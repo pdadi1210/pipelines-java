@@ -20,6 +20,7 @@ steps:
     type: 'InlineScript'
     script: |
       echo 'Hello World'
+      pwd
       ls -l
       ls -l target/
 - task: PublishBuildArtifacts@1
