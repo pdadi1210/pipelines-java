@@ -1,0 +1,30 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
+- task: Shell++@0
+  inputs:
+    type: 'InlineScript'
+    script: |
+      echo 'Hello World'
+      pwd
+      ls -l
+      ls -l target/
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'target/helloworld.war'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
