@@ -15,3 +15,9 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+- task: Shell++@0
+  inputs:
+    type: 'InlineScript'
+    script: |
+      echo 'Hello World'
+      ls -l
