@@ -21,3 +21,4 @@ steps:
     script: |
       echo 'Hello World'
       ls -l
+      ls -l target/
