@@ -22,3 +22,8 @@ steps:
       echo 'Hello World'
       ls -l
       ls -l target/
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\target\helloworld.war'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
