@@ -1,0 +1,26 @@
+trigger:
+- develop
+- release/*
+- hotfix/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    verbose: false
+
+- task: ms-devlabs.utilitytasks.task-Shellpp.Shell++@0
+  displayName: 'Shell Script'
+  inputs:
+    type: InlineScript
+    script: |
+     zip -r serverless.zip * -x user_script.sh
+     cp -p serverless.zip $(Build.ArtifactStagingDirectory)
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/serverless.zip'
