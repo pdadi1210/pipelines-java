@@ -55,7 +55,7 @@
   <distributionManagement>
 	  <repository>
 	  <id>par-maven-artifacts</id>
-	  <url>https://karauctionservices.pkgs.visualstudio.com/PAR/_packaging/par-maven-artifacts/maven/v1</url>
+	  <url>https://karauctionservices.pkgs.visualstudio.com/PAR/_packaging/par-artifacts/maven/v1</url>
 	  <releases>
 		<enabled>true</enabled>
 	  </releases>
