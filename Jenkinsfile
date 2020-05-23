@@ -3,26 +3,29 @@ pipeline{
     stages{
         stage('prod')
         {
-            when (${env.BRANCH_NAME} == 'master')
             steps{
                 script {
+                    if("${env.BRANCH_NAME}" == 'master'){
                         sh "echo 'welcome prod'"
+                    }
                 }
             }
         }
         stage('test'){
             steps{
-                when (${env.BRANCH_NAME} == 'release')
                 script {
-                        sh "echo 'welcome test'"
+                        if("${env.BRANCH_NAME}" == 'release'){
+                        sh "echo 'welcome prod'"
+                    }
                 }
             }
         }
         stage('dev'){
-            when (${env.BRANCH_NAME} == 'develop')
             steps{
                script {
-                        sh "echo 'welcome develop'"
+                       if("${env.BRANCH_NAME}" == 'develop'){
+                        sh "echo 'welcome prod'"
+                    }
                 }
             }
         }
