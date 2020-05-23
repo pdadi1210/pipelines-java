@@ -4,33 +4,21 @@ pipeline{
         stage('dev')
         {
             agent any
+            when { branch 'master' }
             steps{
-                script{
-                if (env.BRANCH_NAME == "master" && env.CHANGE_ID == null) 
-                {
-                    sh "echo 'welcome dev conditional'"
-                }
-                else if (env.BRANCH_NAME == "release" && env.CHANGE_ID == null) 
-                {
-                    sh "echo 'welcome test conditional'"
-                }
-
-                else (env.BRANCH_NAME == "develop" && env.CHANGE_ID == null)
-                {
-                    sh "echo 'welcome uat conditional'"
-                }
-                }
                 sh "echo 'welcome dev'"
             }
         }
         stage(test){
             agent any
+            when { branch 'release' }
             steps{
                 sh "echo 'welcome test'"
             }
         }
         stage("prod"){
             agent any
+            when { branch 'develop' }
             steps{
                 sh "echo 'welcome uat'"
             }
