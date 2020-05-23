@@ -4,6 +4,9 @@ pipeline{
         stage('dummy'){
             steps{
                 echo env.GIT_BRANCH
+                script{
+                    echo $(git rev-parse --abbrev-ref HEAD)
+                }
             }
         }
         stage('dev')
