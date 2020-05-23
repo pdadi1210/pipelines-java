@@ -3,29 +3,32 @@ pipeline{
     stages{
         stage('prod')
         {
+            when {
+                branch 'development'
+            }
             steps{
                 script {
-                    if(env.GIT_BRANCH == 'develop'){
                         sh "echo 'welcome develop'"
-                    }
                 }
             }
         }
         stage('test'){
+            when {
+                branch 'release'
+            }
             steps{
                  script {
-                     if(env.GIT_BRANCH == 'release'){
                         sh "echo 'welcome release'"
-                     }
                 }
             }
         }
         stage('dev'){
+            when {
+                branch 'master'
+            }
             steps{
                 script{
-                    if(env.GIT_BRANCH == 'master') {
                         sh "echo 'welcome prod'"
-                    }
                 }
             }
         }
