@@ -4,22 +4,28 @@ pipeline{
         stage('prod')
         {
             steps{
-                script(env.GIT_BRANCH == 'develop') {
+                script {
+                    if(env.GIT_BRANCH == 'develop'){
                         sh "echo 'welcome develop'"
+                    }
                 }
             }
         }
         stage('test'){
             steps{
-                 script(env.GIT_BRANCH == 'release') {
+                 script {
+                     if((env.GIT_BRANCH == 'release'){
                         sh "echo 'welcome release'"
+                     }
                 }
             }
         }
         stage('dev'){
             steps{
-                script(env.GIT_BRANCH == 'master') {
+                script{
+                    if(env.GIT_BRANCH == 'master') {
                         sh "echo 'welcome prod'"
+                    }
                 }
             }
         }
