@@ -1,6 +1,11 @@
 pipeline{
     agent any
     stages{
+        stage{
+            steps{
+                echo env.GIT_BRANCH
+            }
+        }
         stage('prod')
         {
             when {
