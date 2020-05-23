@@ -5,18 +5,20 @@ pipeline{
         {
             agent any
             steps{
-                if ($BRANCH_NAME == "master" && $CHANGE_ID == null) 
+                script{
+                if (env.BRANCH_NAME == "master" && env.CHANGE_ID == null) 
                 {
                     sh "echo 'welcome dev conditional'"
                 }
-                else if ($BRANCH_NAME == "release" && $CHANGE_ID == null) 
+                else if (env.BRANCH_NAME == "release" && env.CHANGE_ID == null) 
                 {
                     sh "echo 'welcome test conditional'"
                 }
 
-                else ($BRANCH_NAME == "develop" && $CHANGE_ID == null)
+                else (env.BRANCH_NAME == "develop" && env.CHANGE_ID == null)
                 {
                     sh "echo 'welcome uat conditional'"
+                }
                 }
                 sh "echo 'welcome dev'"
             }
