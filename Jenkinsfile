@@ -5,7 +5,7 @@ pipeline{
         {
             steps{
                 script {
-                    if("${env.BRANCH_NAME}" == 'master'){
+                    if("$env.BRANCH_NAME" == 'master'){
                         sh "echo 'welcome prod'"
                     }
                 }
@@ -14,7 +14,7 @@ pipeline{
         stage('test'){
             steps{
                 script {
-                        if("${env.BRANCH_NAME}" == 'release'){
+                        if("$env.BRANCH_NAME" == 'release'){
                         sh "echo 'welcome prod'"
                     }
                 }
@@ -23,7 +23,7 @@ pipeline{
         stage('dev'){
             steps{
                script {
-                       if("${env.BRANCH_NAME}" == 'develop'){
+                       if("$env.BRANCH_NAME" == 'develop'){
                         sh "echo 'welcome prod'"
                     }
                 }
