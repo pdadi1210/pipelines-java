@@ -7,10 +7,10 @@ pipeline{
                 echo "$env.BRANCH_NAME"
             }
         }
-        stage('prod')
+        stage('dev')
         {
             when {
-                branch 'development'
+                env.GIT_BRANCH 'origin/development'
             }
             steps{
                 script {
@@ -20,7 +20,7 @@ pipeline{
         }
         stage('test'){
             when {
-                branch 'release'
+                env.GIT_BRANCH 'origin/release'
             }
             steps{
                  script {
@@ -28,9 +28,9 @@ pipeline{
                 }
             }
         }
-        stage('dev'){
+        stage('prod'){
             when {
-                branch 'master'
+                env.GIT_BRANCH 'originmaster'
             }
             steps{
                 script{
