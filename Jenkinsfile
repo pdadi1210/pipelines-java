@@ -4,29 +4,25 @@ pipeline{
         stage('prod')
         {
             steps{
+                when (${env.BRANCH_NAME} == 'master')
                 script {
-                    if (${env.BRANCH_NAME} == 'master') {
                         sh "echo 'welcome prod'"
-                    }
                 }
             }
         }
         stage('test'){
             steps{
+                when (${env.BRANCH_NAME} == 'release')
                 script {
-                    if (${env.BRANCH_NAME} == 'release') {
                         sh "echo 'welcome test'"
-                    }
                 }
             }
         }
         stage('dev'){
-            when { branch 'develop' }
+            when (${env.BRANCH_NAME} == 'master')
             steps{
                script {
-                    if (${env.BRANCH_NAME} == 'develop') {
                         sh "echo 'welcome develop'"
-                    }
                 }
             }
         }
