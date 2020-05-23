@@ -4,13 +4,13 @@ pipeline{
         stage('dummy'){
             steps{
                 echo env.GIT_BRANCH
-                echo "$env.BRANCH_NAME"
+                echo branch
             }
         }
         stage('dev')
         {
             when {
-                env.GIT_BRANCH 'origin/development'
+                branch 'origin/development'
             }
             steps{
                 script {
@@ -20,7 +20,7 @@ pipeline{
         }
         stage('test'){
             when {
-                env.GIT_BRANCH 'origin/release'
+                branch 'origin/release'
             }
             steps{
                  script {
@@ -30,7 +30,7 @@ pipeline{
         }
         stage('prod'){
             when {
-                env.GIT_BRANCH 'originmaster'
+                branch 'originmaster'
             }
             steps{
                 script{
