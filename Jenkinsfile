@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage{
+        stage('dummy'){
             steps{
                 echo env.GIT_BRANCH
             }
