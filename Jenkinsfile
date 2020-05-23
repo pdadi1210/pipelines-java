@@ -14,7 +14,7 @@ pipeline{
         stage('test'){
             steps{
                  script {
-                     if((env.GIT_BRANCH == 'release'){
+                     if(env.GIT_BRANCH == 'release'){
                         sh "echo 'welcome release'"
                      }
                 }
