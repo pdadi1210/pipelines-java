@@ -3,8 +3,8 @@ pipeline{
     stages{
         stage('prod')
         {
+            when (${env.BRANCH_NAME} == 'master')
             steps{
-                when (${env.BRANCH_NAME} == 'master')
                 script {
                         sh "echo 'welcome prod'"
                 }
@@ -19,7 +19,7 @@ pipeline{
             }
         }
         stage('dev'){
-            when (${env.BRANCH_NAME} == 'master')
+            when (${env.BRANCH_NAME} == 'develop')
             steps{
                script {
                         sh "echo 'welcome develop'"
