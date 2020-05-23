@@ -6,7 +6,7 @@ pipeline{
             agent any
             when { branch 'master'}
             steps{
-                sh "echo 'welcome dev'"
+                sh "echo 'welcome prod'"
             }
         }
         stage('test'){
@@ -20,7 +20,7 @@ pipeline{
             agent any
             when { branch 'develop' }
             steps{
-                sh "echo 'welcome uat'"
+                sh "echo 'welcome dev'"
             }
         }
     }
