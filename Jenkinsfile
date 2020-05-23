@@ -4,21 +4,21 @@ pipeline{
         stage('prod')
         {
             agent any
-            when { env.BRANCH_NAME == 'master'}
+            when { branch 'master'}
             steps{
                 sh "echo 'welcome dev'"
             }
         }
         stage('test'){
             agent any
-            when { env.BRANCH_NAME == 'release' }
+            when { branch 'release' }
             steps{
                 sh "echo 'welcome test'"
             }
         }
         stage('dev'){
             agent any
-            when { env.BRANCH_NAME == 'develop' }
+            when { branch 'develop' }
             steps{
                 sh "echo 'welcome uat'"
             }
