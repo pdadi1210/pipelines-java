@@ -4,13 +4,15 @@ pipeline{
         stage('dummy'){
             steps{
                 echo env.GIT_BRANCH
-                echo branch
             }
         }
         stage('dev')
         {
             when {
-                branch 'origin/development'
+                expression {
+                    GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+                    return GIT_BRANCH == 'origin/develop' || params.FORCE_FULL_BUILD
+                }
             }
             steps{
                 script {
@@ -20,7 +22,10 @@ pipeline{
         }
         stage('test'){
             when {
-                branch 'origin/release'
+                expression {
+                    GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+                    return GIT_BRANCH == 'origin/release' || params.FORCE_FULL_BUILD
+                }
             }
             steps{
                  script {
@@ -30,7 +35,10 @@ pipeline{
         }
         stage('prod'){
             when {
-                branch 'originmaster'
+                expression {
+                    GIT_BRANCH = 'origin/' + sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+                    return GIT_BRANCH == 'origin/master' || params.FORCE_FULL_BUILD
+                }
             }
             steps{
                 script{
