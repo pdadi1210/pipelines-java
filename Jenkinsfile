@@ -4,7 +4,7 @@ pipeline{
         stage('dummy'){
             steps{
                 echo env.GIT_BRANCH
-                echo env.BRANCH_NAME
+                echo "$env.BRANCH_NAME"
             }
         }
         stage('prod')
